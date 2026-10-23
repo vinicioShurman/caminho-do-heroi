@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caminho do Herói</title>
+<meta name="description" content="O caminho que percorri em Mortal Shell II, gravado pelo mod HeroPath.">
+<link rel="icon" href="assets/player.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="map" aria-label="Mapa de Mortal Shell II"></div>
+<canvas id="trail" aria-hidden="true"></canvas>
+
+<header class="card title">
+  <h1>Caminho do Herói</h1>
+  <p class="sub">Mortal Shell II</p>
+  <dl class="stats">
+    <div><dt>Tempo de jogo</dt><dd id="statTime">–</dd></div>
+    <div><dt>Distância</dt><dd id="statDist">–</dd></div>
+    <div><dt>Data</dt><dd id="statDate">–</dd></div>
+  </dl>
+  <p class="where" id="where" hidden>Em interior ou masmorra</p>
+  <button class="drawer-toggle" id="daysToggle" aria-expanded="false" aria-controls="days">
+    <span>Tempo por dia</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9l5 6 5-6z"/></svg>
+  </button>
+  <ol class="days" id="days" hidden></ol>
+</header>
+
+<div class="card side">
+  <label class="toggle"><input type="checkbox" id="follow"> Seguir o herói</label>
+  <label class="toggle"><input type="checkbox" id="ghost"> Mostrar caminho futuro</label>
+</div>
+
+<footer class="card bar">
+  <div class="buttons">
+    <button id="prev" title="Trecho anterior" aria-label="Trecho anterior">
+      <svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
+    </button>
+    <button id="play" class="primary" title="Reproduzir (espaço)" aria-label="Reproduzir">
+      <svg class="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>
+      <svg class="i-pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+    </button>
+    <button id="next" title="Próximo trecho" aria-label="Próximo trecho">
+      <svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
+    </button>
+  </div>
+  <div class="scrub">
+    <input type="range" id="slider" min="0" max="1" step="1" value="0" aria-label="Tempo de jogo">
+    <div class="ticks" id="ticks"></div>
+  </div>
+  <div class="readout">
+    <span id="clock" class="mono">0h 00m</span>
+    <select id="speed" aria-label="Velocidade">
+      <option value="10">×10</option>
+      <option value="30">×30</option>
+      <option value="60">×60</option>
+      <option value="100">×100</option>
+      <option value="300">×300</option>
+      <option value="1200" selected>×1200</option>
+      <option value="3600">×3600</option>
+      <option value="10800">×10800</option>
+    </select>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
